@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4bddbd87f4946b0bd27a2bb3d02c1b1, type: 3}
+  m_Name: installer_sound_service
+  m_EditorClassIdentifier: 
+  audioSourcePrefab: {fileID: 1401338152283500013, guid: 47e36b961b4cbf64e90366611e71a56d, type: 3}
+  audioMixer: {fileID: 24100000, guid: 2e04a31a0226a09499a374203b8386eb, type: 2}
+  initialPoolSize: 10

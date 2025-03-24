@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popupBackPanelPrefab: {fileID: 4421473717807084348, guid: 3a31983891c9c0a449daf41d293cdb8b, type: 3}
   screenPrefabs:
-  - {fileID: 0}
+  - {fileID: 3790140856620639514, guid: cbc170a3f94d92843a7b5f739cda9e30, type: 3}
   popupPrefabs:
   - {fileID: 2475958197751241793, guid: 85d44ab53dfa1b2438de9b1194d1af1b, type: 3}
