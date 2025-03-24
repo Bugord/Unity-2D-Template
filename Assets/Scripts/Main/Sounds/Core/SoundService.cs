@@ -19,7 +19,7 @@ namespace Main.Sounds.Core
         private readonly Dictionary<AudioSource, SoundEffectData> activeAudioSources;
 
         private int pauseCounter = 0;
-        
+
         private bool IsPaused => pauseCounter > 0;
 
         public SoundService(IObjectPool<AudioSource> audioSourceObjectPool, ILogger<SoundService> logger)
@@ -31,10 +31,8 @@ namespace Main.Sounds.Core
 
         public void Dispose()
         {
-            foreach (var audioSource in activeAudioSources.Keys)
-            {
-                if (audioSource != null)
-                {
+            foreach (var audioSource in activeAudioSources.Keys) {
+                if (audioSource != null) {
                     audioSource.Stop();
                 }
             }
@@ -50,19 +48,17 @@ namespace Main.Sounds.Core
             source.outputAudioMixerGroup = data.group;
 
             activeAudioSources.Add(source, data);
-            
+
             source.Play();
             await source.DOFade(1, fadeDuration).From(0);
 
-            if (data.loop)
-            {
+            if (data.loop) {
                 return;
             }
-            
-            await UniTask.WaitWhile(() => source !=null && source.isPlaying && source.time <= source.clip.length);
-            
-            if (source == null)
-            {
+
+            await UniTask.WaitWhile(() => source != null && source.isPlaying && source.time <= source.clip.length);
+
+            if (source == null) {
                 return;
             }
 
@@ -73,25 +69,21 @@ namespace Main.Sounds.Core
         public void PauseAll(float fadeDuration = 0)
         {
             pauseCounter++;
-            logger.Log($"Pause All ({pauseCounter})");
             UpdateAudioSourcePause(fadeDuration);
         }
 
         public void ResumeAll(float fadeDuration = 0)
         {
-            if (pauseCounter > 0)
-            {
+            if (pauseCounter > 0) {
                 pauseCounter--;
             }
 
-            logger.Log($"Resume All ({pauseCounter})");
             UpdateAudioSourcePause(fadeDuration);
         }
 
         private void UpdateAudioSourcePause(float fadeDuration = 0)
         {
-            foreach (var activeAudioSource in activeAudioSources)
-            {
+            foreach (var activeAudioSource in activeAudioSources) {
                 activeAudioSource.Key
                     .DOFade(IsPaused ? 0 : 1, fadeDuration)
                     .From(activeAudioSource.Key.volume);
@@ -117,12 +109,10 @@ namespace Main.Sounds.Core
 
         public void OnApplicationFocusChanged(bool isFocused)
         {
-            if (isFocused)
-            {
+            if (isFocused) {
                 ResumeAll();
             }
-            else
-            {
+            else {
                 PauseAll();
             }
         }
