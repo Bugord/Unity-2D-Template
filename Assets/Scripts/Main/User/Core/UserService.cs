@@ -5,7 +5,7 @@ namespace Main.User.Core
 {
     public class UserService : IUserService
     {
-        private const string UserDataKey = "pack_bringer_key_user_data";
+        private const string UserDataKey = "key_user_data";
 
         public UserData GetUserData()
         {
